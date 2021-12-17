@@ -10,7 +10,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    response_func = requests.get(os.getenv("DATA_URL"))
+    func_json = response_func.json()
+    for i in func_json:
+        temp = i["temperature"]
+
+    lista = []
+    response_api = requests.get(os.getenv("API_URL"))
+    api_json = response_api.json()
+    for item in api_json["Departure"]:
+        lista.append(item["time"])
+        lista.append(item["direction"])
+
+    return render_template('index.html', lista=lista, temp=temp)
 
 @app.route('/api')
 def get_data():
@@ -18,12 +30,8 @@ def get_data():
     data = requests.get(os.getenv("API_URL"))
     json_data = data.json()
     for item in json_data["Departure"]:
-        testList.append(item["time"])
         testList.append(item["direction"])
-        
-        
-    # temp = data["temperature"]
-    # ts = datetime.datetime.fromtimestamp(data["_ts"])
+        testList.append(item["time"])
     return render_template('api.html', lista=testList)
 
 if __name__ == "__main__":
