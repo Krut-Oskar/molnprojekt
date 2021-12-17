@@ -19,7 +19,7 @@ namespace FunctionAppTest
             [CosmosDB(databaseName:"molnprojektdb", 
             collectionName:"Messages",
             ConnectionStringSetting ="ComosDbConnection",
-            SqlQuery = "SELECT * FROM c ORDER BY c._ts DESC")]
+            SqlQuery = "SELECT * FROM c ORDER BY c._ts DESC")]// SELECT top 1 * FROM c order by c._ts desc
             IEnumerable<dynamic> cosmos,
             ILogger log)
         {
