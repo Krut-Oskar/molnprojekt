@@ -2,9 +2,12 @@
 
 ## Summary
 
-The idea of this project is to build an app which will tell me if I can take the bike to school/work or if it's better to use the subway. It will do this by collecting temperature data from a sensor and determine wether it's too cold to bike, if it is the app will recommend subway departures for me. This is to relieve me of some stress in the morning.
+The idea of this project is to build an application which will tell me if I can take the bike to school/work or if it's better to use the subway. It will do this by collecting temperature data from a sensor and determine wether it's too cold to bike, if it is the application will recommend subway departures for me. This is to relieve me of some stress in the morning.
 
 I chose to build the idea in Azure mainly due to  economic reasons, since I can use their student credit. I have some earlier experience with Azure, but it's been a long time since I've used them and I wanted to refresh and expand my knowledege.
+
+This is a sketch of the system design:
+![](system.png)
 
 ## Device
 
@@ -21,7 +24,16 @@ I chose to write the Azure functions i C# and develop and testing them locally b
 
 ## Website
 
+This part of the project was probably the most interesting one for me since I've never really built websites before. I chose to this with Flask in Python, as you can tell I'm not really a front end developer (yet), but I had a lot of fun. One of the more challenging parts was to figure out a way to manage secrets (API keys etc.) when uploading it to a cloud service. I chose to use Azure Key Vault to store my secrets and then acces them through their Python libraries. One nice thing with building the app in Flask is the ability to pass variable and use Python code inside the html files. In the end I chose to try to deploy the website to Azure in a docker container since I've never tried that before. 
+
 ## API
 
-Because of restrictions of certain API:s I chose to call the API:s from the backend of the website, instead of from a Azure Function. This is because some of the API:s didn't allow any retention of data, and I didn't want to risk anything by saving the data in the database. I could have used an azure function to call the with either a timing trigger or HTTP Request trigger, but since that would only mean an extra step instead of just calling it directly from the website backend.
+Because of restrictions of certain API:s I chose to call the API:s from the backend of the website, instead of from a Azure Function. This is because some of the API:s didn't allow any retention of data, and I didn't want to risk anything by saving the data in the database. I could have used an azure function to call the with either a timing trigger or HTTP Request trigger, but that would only mean an extra step instead of just calling it directly from the website backend. The API that I used is [ResRobot](https://www.trafiklab.se/api/trafiklab-apis/resrobot-v2/timetables/) and I got the API key from [Trafiklab](https://www.trafiklab.se). 
+
 ## Future
+
+In the future I would like to try to integrate some kind of integration with my cell phone either in the form of an app that can send notifications or maybe an sms service. 
+
+I would also like to make the application more open for other people to use. This could done by making a setup page where you can choose the closes subway stop to you etc. You could also include more API:s like a weather API to make more accurate weather predictions. 
+
+Last but not least it would be interesting to train a machine learning model to make the decision depending on the weather instead of harcoding a temperature value. I could make the model take in more data such as rain/snow the weather forecast for the whole day etc. Afterall the temperature is not the only deciding factor to if you should bike or take the train.
