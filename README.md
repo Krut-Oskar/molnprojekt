@@ -2,9 +2,9 @@
 
 ## Summary
 
-The idea of this project is to build an application which will tell me if I can take the bike to school/work or if it's better to use the subway. It will do this by collecting temperature data from a sensor and determine wether it's too cold to bike, if it is the application will recommend subway departures for me. This is to relieve me of some stress in the morning.
+The idea of this project is to build an application which will tell me if I can take the bike to school/work or if it's better to use the subway. It will do this by collecting temperature data from a sensor and determine wether it's too cold to bike, if it is the application will recommend subway departures for me. This is to relieve me of some stress in the morning. 
 
-I chose to build the idea in Azure mainly due to  economic reasons, since I can use their student credit. I have some earlier experience with Azure, but it's been a long time since I've used them and I wanted to refresh and expand my knowledege.
+This project was a lot of fun since I got to play with both Flask and Docker which I've never tried before and even though the project seems a bit simple it was good practice for me to try alot of new technologies/frameworks!
 
 This is a sketch of the system design:
 ![](system.png)
